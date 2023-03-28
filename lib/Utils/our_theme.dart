@@ -23,6 +23,7 @@ class OurTheme {
             color: lilac,
           ),
         ),
+        prefixIconColor: brown,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
@@ -46,6 +47,8 @@ class OurTheme {
       colorScheme: ColorScheme.fromSwatch().copyWith(
         secondary: light,
       ),
+      iconTheme: IconThemeData(color: brown),
+      primaryIconTheme: IconThemeData(color: brown),
     );
   }
 }
