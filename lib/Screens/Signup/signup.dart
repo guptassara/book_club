@@ -14,20 +14,21 @@ class OurSignup extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.all(20),
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 50,
-                      ),
-                      child: BackButton(),
-                    ),
-                  ],
-                ),
                 const SizedBox(
-                  height: 40,
+                  height: 140,
                 ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: const [
+                //     Padding(
+                //       padding: EdgeInsets.only(
+                //         top: 50,
+                //       ),
+                //       child: BackButton(),
+                //     ),
+                //   ],
+                // ),
+
                 const OurSignUpForm(),
               ],
             ),

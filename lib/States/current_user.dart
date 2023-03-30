@@ -15,24 +15,24 @@ class CurrentUser extends ChangeNotifier {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<bool> signUpUser(String email, String password) async {
-    bool retVal = false;
+  Future<String?> signUpUser(String email, String password) async {
+    String? retVal = "error";
 
     try {
       UserCredential _userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       if (_userCredential.user != null) {
-        retVal = true;
+        retVal = "success";
       }
     } on FirebaseAuthException catch (e) {
-      log(e.toString());
+      retVal = e.message;
     }
 
     return retVal;
   }
 
-  Future<bool> logInUser(String email, String password) async {
-    bool retVal = false;
+  Future<String?> logInUserWithEmail(String email, String password) async {
+    String? retVal = "error";
 
     try {
       UserCredential _userCredential = await _auth.signInWithEmailAndPassword(
@@ -41,10 +41,10 @@ class CurrentUser extends ChangeNotifier {
         _uid = _userCredential.user!.uid;
         _email = _userCredential.user!.email!;
 
-        retVal = true;
+        retVal = "success";
       }
-    } catch (e) {
-      print(e);
+    } on FirebaseAuthException catch (e) {
+      retVal = e.message;
     }
 
     return retVal;
