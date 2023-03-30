@@ -31,7 +31,7 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(_returnString!),
-            duration: Duration(seconds: 2),
+            duration: const Duration(seconds: 2),
           ),
         );
       }
@@ -43,90 +43,125 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
   @override
   Widget build(BuildContext context) {
     return OurContainer(
-      child: Column(children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
-          child: Text(
-            "Sign up",
-            style: TextStyle(
-                color: Theme.of(context).secondaryHeaderColor,
-                fontSize: 25,
-                fontWeight: FontWeight.bold),
-          ),
-        ),
-        TextFormField(
-          controller: _fullNameController,
-          decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.person_outline), hintText: "Full Name"),
-        ),
-        const SizedBox(
-          height: 20.0,
-        ),
-        TextFormField(
-          controller: _emailController,
-          decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.alternate_email), hintText: "Email"),
-        ),
-        const SizedBox(
-          height: 20.0,
-        ),
-        TextFormField(
-          controller: _passwordController,
-          decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.lock_outline), hintText: "Password"),
-          obscureText: true,
-        ),
-        const SizedBox(
-          height: 20.0,
-        ),
-        TextFormField(
-          controller: _confirmPasswordController,
-          decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.lock_open_outlined),
-              hintText: "Confirm Password"),
-          obscureText: true,
-        ),
-        const SizedBox(height: 20.0),
-        ElevatedButton(
-          onPressed: () {
-            if (_passwordController.text == _confirmPasswordController.text) {
-              _signUpUser(
-                  _emailController.text, _passwordController.text, context);
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Passwords do not match"),
-                  duration: Duration(seconds: 2),
-                ),
-              );
-            }
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 100),
+      child: Column(
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
             child: Text(
               "Sign up",
               style: TextStyle(
-                color: Theme.of(context).colorScheme.secondary,
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
+                  color: Theme.of(context).secondaryHeaderColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          TextFormField(
+            controller: _fullNameController,
+            decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.person_outline), hintText: "Full Name"),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          TextFormField(
+            controller: _emailController,
+            decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.alternate_email), hintText: "Email"),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          TextFormField(
+            controller: _passwordController,
+            decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.lock_outline), hintText: "Password"),
+            obscureText: true,
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          TextFormField(
+            controller: _confirmPasswordController,
+            decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.lock_open_outlined),
+                hintText: "Confirm Password"),
+            obscureText: true,
+          ),
+          const SizedBox(height: 20.0),
+          ElevatedButton(
+            onPressed: () {
+              if (_passwordController.text == _confirmPasswordController.text) {
+                _signUpUser(
+                    _emailController.text, _passwordController.text, context);
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Passwords do not match"),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: Text(
+                "Sign up",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                ),
               ),
             ),
           ),
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const OurLogin(),
-              ),
-            );
-          },
-          child: Text(
-            "Already have an account? Sign in here",
-            style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const OurLogin(),
+                ),
+              );
+            },
+            child: Text(
+              "Already have an account? Sign in here",
+              style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
+            ),
           ),
-        )
-      ]),
+          _googleButton(),
+        ],
+      ),
     );
   }
+}
+
+Widget _googleButton() {
+  return OutlinedButton(
+    onPressed: () {},
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          Image(
+            image: AssetImage("assets/googleIcon.png"),
+            height: 27,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: Text(
+              "Sign up with google",
+              style: TextStyle(
+                fontSize: 20,
+                color: Color(
+                  (0xff151618),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }

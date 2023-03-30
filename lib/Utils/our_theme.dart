@@ -44,6 +44,28 @@ class OurTheme {
           ),
         ),
       ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          textStyle: MaterialStateProperty.all(
+            const TextStyle(
+              fontSize: 20,
+              color: Color(
+                (0xff151618),
+              ),
+            ),
+          ),
+          side: MaterialStateProperty.all(
+            BorderSide(color: darkBrown),
+          ),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                40.0,
+              ),
+            ),
+          ),
+        ),
+      ),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         secondary: light,
       ),

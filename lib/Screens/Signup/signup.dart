@@ -13,8 +13,8 @@ class OurSignup extends StatelessWidget {
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(20),
-              children: [
-                const SizedBox(
+              children: const [
+                SizedBox(
                   height: 140,
                 ),
                 // Row(
@@ -29,7 +29,7 @@ class OurSignup extends StatelessWidget {
                 //   ],
                 // ),
 
-                const OurSignUpForm(),
+                OurSignUpForm(),
               ],
             ),
           )

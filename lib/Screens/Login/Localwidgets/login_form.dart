@@ -1,7 +1,6 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'dart:developer';
-import 'dart:js';
 
 import 'package:book_club/Screens/Signup/signup.dart';
 import 'package:book_club/Screens/home.dart';
@@ -38,7 +37,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(_returnString!),
-            duration: Duration(seconds: 2),
+            duration: const Duration(seconds: 2),
           ),
         );
       }
@@ -123,13 +122,13 @@ Widget _googleButton() {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        children: [
-          const Image(
+        children: const [
+          Image(
             image: AssetImage("assets/googleIcon.png"),
             height: 27,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: EdgeInsets.only(left: 10),
             child: Text(
               "Sign in with google",
               style: TextStyle(
