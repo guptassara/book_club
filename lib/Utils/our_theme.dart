@@ -30,6 +30,9 @@ class OurTheme {
           backgroundColor: MaterialStateProperty.all(
             darkBrown,
           ),
+          elevation: MaterialStateProperty.all(
+            7,
+          ),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(

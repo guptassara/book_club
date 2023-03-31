@@ -10,6 +10,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+enum LoginType {
+  email,
+  google,
+}
+
 class OurLoginForm extends StatefulWidget {
   const OurLoginForm({super.key});
 
@@ -21,7 +26,8 @@ class _OurLoginFormState extends State<OurLoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _loginUser(String email, String password, BuildContext context) async {
+  void _loginUser(LoginType type, String email, String password,
+      BuildContext context) async {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
     try {
@@ -79,8 +85,8 @@ class _OurLoginFormState extends State<OurLoginForm> {
           const SizedBox(height: 20.0),
           ElevatedButton(
             onPressed: () {
-              _loginUser(
-                  _emailController.text, _passwordController.text, context);
+              _loginUser(LoginType.email, _emailController.text,
+                  _passwordController.text, context);
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 100),
