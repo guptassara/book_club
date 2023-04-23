@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:book_club/Screens/Signup/signup.dart';
 import 'package:book_club/Screens/home.dart';
 import 'package:book_club/States/current_user.dart';
+import 'package:book_club/Widgets/google_button.dart';
 import 'package:book_club/Widgets/our_container.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,13 +27,29 @@ class _OurLoginFormState extends State<OurLoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _loginUser(LoginType type, String email, String password,
-      BuildContext context) async {
+  void _loginUser(
+    @required LoginType type,
+    String? email,
+    String? password,
+    BuildContext context,
+  ) async {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
     try {
-      String? _returnString =
-          await _currentUser.logInUserWithEmail(email, password);
+      String? _returnString;
+      switch (type) {
+        case LoginType.email:
+          _returnString =
+              await _currentUser.logInUserWithEmail(email!, password!);
+
+          break;
+        case LoginType.google:
+          _returnString = await _currentUser.logInUserWithGoogle();
+
+          break;
+        default:
+      }
+
       if (_returnString == "success") {
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -113,40 +130,12 @@ class _OurLoginFormState extends State<OurLoginForm> {
               style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
             ),
           ),
-          _googleButton(),
+          GoogleButton(
+              "Sign in with Google",
+              _loginUser(
+                  LoginType.google, null, null, context as BuildContext)),
         ],
       ),
     );
   }
-}
-
-Widget _googleButton() {
-  return OutlinedButton(
-    onPressed: () {},
-    child: Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          Image(
-            image: AssetImage("assets/googleIcon.png"),
-            height: 27,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: Text(
-              "Sign in with google",
-              style: TextStyle(
-                fontSize: 20,
-                color: Color(
-                  (0xff151618),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
 }

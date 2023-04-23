@@ -1,7 +1,9 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'package:book_club/Screens/Login/Localwidgets/login_form.dart';
 import 'package:book_club/Screens/Login/login.dart';
 import 'package:book_club/States/current_user.dart';
+import 'package:book_club/Widgets/google_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../Widgets/our_container.dart';
@@ -20,11 +22,29 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  void _signUpUser(String email, String password, BuildContext context) async {
+  void _signUpUser(
+    LoginType type,
+    String? email,
+    String? password,
+    BuildContext context,
+  ) async {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
     try {
-      String? _returnString = await _currentUser.signUpUser(email, password);
+      String? _returnString;
+      switch (type) {
+        case LoginType.email:
+          _returnString =
+              await _currentUser.logInUserWithEmail(email!, password!);
+
+          break;
+        case LoginType.google:
+          _returnString = await _currentUser.logInUserWithGoogle();
+
+          break;
+        default:
+      }
+
       if (_returnString == "success") {
         Navigator.pop(context);
       } else {
@@ -92,8 +112,8 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
           ElevatedButton(
             onPressed: () {
               if (_passwordController.text == _confirmPasswordController.text) {
-                _signUpUser(
-                    _emailController.text, _passwordController.text, context);
+                _signUpUser(LoginType.email, _emailController.text,
+                    _passwordController.text, context);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -128,40 +148,12 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
               style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
             ),
           ),
-          _googleButton(),
+          GoogleButton(
+              "Sign up with Google",
+              _signUpUser(
+                  LoginType.google, null, null, context as BuildContext)),
         ],
       ),
     );
   }
-}
-
-Widget _googleButton() {
-  return OutlinedButton(
-    onPressed: () {},
-    child: Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          Image(
-            image: AssetImage("assets/googleIcon.png"),
-            height: 27,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: Text(
-              "Sign up with google",
-              style: TextStyle(
-                fontSize: 20,
-                color: Color(
-                  (0xff151618),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
 }
