@@ -23,28 +23,29 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
       TextEditingController();
 
   void _signUpUser(
-    LoginType type,
+    
     String? email,
     String? password,
     BuildContext context,
+    String fullname,
   ) async {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
     try {
-      String? _returnString;
-      switch (type) {
-        case LoginType.email:
-          _returnString =
-              await _currentUser.logInUserWithEmail(email!, password!);
+      // switch (type) {
+      //   case LoginType.email:
+      //     _returnString =
+      //         await _currentUser.logInUserWithEmail(email!, password!);
 
-          break;
-        case LoginType.google:
-          _returnString = await _currentUser.logInUserWithGoogle();
+      //     break;
+      //   case LoginType.google:
+      //     _returnString = await _currentUser.logInUserWithGoogle();
 
-          break;
-        default:
-      }
-
+      //     break;
+      //   default:
+      // }
+      String? _returnString =
+          await _currentUser.logInUserWithEmail(email!, password!);
       if (_returnString == "success") {
         Navigator.pop(context);
       } else {
@@ -112,8 +113,8 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
           ElevatedButton(
             onPressed: () {
               if (_passwordController.text == _confirmPasswordController.text) {
-                _signUpUser(LoginType.email, _emailController.text,
-                    _passwordController.text, context);
+                _signUpUser(_emailController.text, _passwordController.text,
+                    context, _fullNameController.text);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -148,10 +149,10 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
               style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
             ),
           ),
-          GoogleButton(
-              "Sign up with Google",
-              _signUpUser(
-                  LoginType.google, null, null, context as BuildContext)),
+          // GoogleButton(
+          //     "Sign up with Google",
+          //     _signUpUser(
+          //         LoginType.google, null, null, context as BuildContext)),
         ],
       ),
     );

@@ -69,6 +69,33 @@ class _OurLoginFormState extends State<OurLoginForm> {
     }
   }
 
+  Widget _googleButton() {
+    return OutlinedButton(
+      onPressed: () {
+        _loginUser(LoginType.google, null, null, context);
+      },
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Image(
+              image: AssetImage("assets/googleIcon.png"),
+              height: 27,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text(
+                "Sign In With Google",
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return OurContainer(
@@ -130,10 +157,11 @@ class _OurLoginFormState extends State<OurLoginForm> {
               style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
             ),
           ),
-          GoogleButton(
-              "Sign in with Google",
-              _loginUser(
-                  LoginType.google, null, null, context as BuildContext)),
+          _googleButton(),
+          // GoogleButton(
+          //     "Sign in with Google",
+          //     _loginUser(
+          //         LoginType.google, null, null, context as BuildContext)),
         ],
       ),
     );

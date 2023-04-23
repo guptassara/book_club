@@ -25,6 +25,10 @@ class OurTheme {
         ),
         prefixIconColor: brown,
       ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: darkBrown,
+        elevation: 0.0,
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
