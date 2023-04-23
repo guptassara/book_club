@@ -37,7 +37,7 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
 
       //     break;
       //   case LoginType.google:
-      //     _returnString = await _currentUser.logInUserWithGoogle();
+      //     _returnString = await _currentUser.();
 
       //     break;
       //   default:

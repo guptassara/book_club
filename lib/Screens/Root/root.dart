@@ -17,6 +17,13 @@ class OurRoot extends StatefulWidget {
 
 class _OurRootState extends State<OurRoot> {
   AuthStatus _authStatus = AuthStatus.notLoggedIn;
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget retVal;
