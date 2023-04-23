@@ -23,11 +23,9 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
       TextEditingController();
 
   void _signUpUser(
-    
     String? email,
     String? password,
     BuildContext context,
-    String fullname,
   ) async {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
@@ -44,8 +42,7 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
       //     break;
       //   default:
       // }
-      String? _returnString =
-          await _currentUser.logInUserWithEmail(email!, password!);
+      String? _returnString = await _currentUser.signUpUser(email!, password!);
       if (_returnString == "success") {
         Navigator.pop(context);
       } else {
@@ -113,8 +110,8 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
           ElevatedButton(
             onPressed: () {
               if (_passwordController.text == _confirmPasswordController.text) {
-                _signUpUser(_emailController.text, _passwordController.text,
-                    context, _fullNameController.text);
+                _signUpUser(
+                    _emailController.text, _passwordController.text, context);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
