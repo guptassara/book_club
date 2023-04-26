@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: OurTheme().buildTheme(),
         debugShowCheckedModeBanner: false,
-        home: const OurLogin(),
+        home: const OurRoot(),
       ),
     );
   }

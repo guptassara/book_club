@@ -18,7 +18,10 @@ class CurrentUser extends ChangeNotifier {
     String retVal = "error";
 
     try {
-      
+      User _firebaseUser = await _auth.currentUser!;
+      _uid = _firebaseUser.uid;
+      _email = _firebaseUser.email!;
+      retVal = "success";
     } catch (e) {
       print(e);
     }
