@@ -7,6 +7,7 @@ class OurTheme {
   Color light = const Color(0xffc0c0c5);
   Color lilac = const Color(0xffa68fb6);
   ThemeData buildTheme() {
+    var minimumSize = 10;
     return ThemeData(
       canvasColor: lightBrown,
       primaryColor: brown,
@@ -31,19 +32,29 @@ class OurTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all(const Size(200, 45)),
+          // minimumSize: MaterialStateProperty<Size?>? minimumSize,
           backgroundColor: MaterialStateProperty.all(
             darkBrown,
+          ),
+          textStyle: MaterialStateProperty.all(
+            const TextStyle(
+              // color: MaterialStateProperty.all(light),
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+              color: Color(0xffc0c0c5),
+            ),
           ),
           elevation: MaterialStateProperty.all(
             7,
           ),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                20.0,
-              ),
+          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              20.0,
             ),
-          ),
+          )
+              // Size(width, height),
+              ),
           padding: MaterialStateProperty.all(
             const EdgeInsets.symmetric(
               horizontal: 20.0,
@@ -51,28 +62,27 @@ class OurTheme {
           ),
         ),
       ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: ButtonStyle(
-          textStyle: MaterialStateProperty.all(
-            const TextStyle(
-              fontSize: 20,
-              color: Color(
-                (0xff151618),
-              ),
-            ),
-          ),
-          side: MaterialStateProperty.all(
-            BorderSide(color: darkBrown),
-          ),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                40.0,
-              ),
-            ),
-          ),
-        ),
-      ),
+      // outlinedButtonTheme: OutlinedButtonThemeData(
+      //   style: ButtonStyle(
+      //     backgroundColor: MaterialStateProperty.all(darkBrown),
+      // textStyle: MaterialStateProperty.all(
+      //   const TextStyle(
+      //     fontSize: 15,
+
+      //   ),
+      //     ),
+      //     side: MaterialStateProperty.all(
+      //       BorderSide(color: darkBrown),
+      //     ),
+      //     shape: MaterialStateProperty.all(
+      //       RoundedRectangleBorder(
+      //         borderRadius: BorderRadius.circular(
+      //           40.0,
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         secondary: light,
       ),

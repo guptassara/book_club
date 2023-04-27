@@ -70,7 +70,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
   }
 
   Widget _googleButton() {
-    return OutlinedButton(
+    return ElevatedButton(
       onPressed: () {
         _loginUser(LoginType.google, null, null, context);
       },
@@ -88,6 +88,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
               padding: EdgeInsets.only(left: 10),
               child: Text(
                 "Sign In With Google",
+                // style: TextStyle(color: ),
               ),
             ),
           ],
@@ -115,7 +116,15 @@ class _OurLoginFormState extends State<OurLoginForm> {
           TextFormField(
             controller: _emailController,
             decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.alternate_email), hintText: "Email"),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      10,
+                    ),
+                  ),
+                ),
+                prefixIcon: Icon(Icons.alternate_email),
+                hintText: "Email"),
           ),
           const SizedBox(
             height: 20.0,
@@ -123,7 +132,15 @@ class _OurLoginFormState extends State<OurLoginForm> {
           TextFormField(
             controller: _passwordController,
             decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.lock_outline), hintText: "Password"),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      10,
+                    ),
+                  ),
+                ),
+                prefixIcon: Icon(Icons.lock_outline),
+                hintText: "Password"),
             obscureText: true,
           ),
           const SizedBox(height: 20.0),
@@ -153,7 +170,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
               );
             },
             child: Text(
-              "Don't have an account? Sign up here",
+              "Don't have an account? Sign up",
               style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
             ),
           ),

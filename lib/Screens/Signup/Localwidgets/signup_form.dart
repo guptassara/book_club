@@ -142,7 +142,7 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
               );
             },
             child: Text(
-              "Already have an account? Sign in here",
+              "Already have an account? Sign in",
               style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
             ),
           ),

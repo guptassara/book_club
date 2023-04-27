@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class CurrentUser extends ChangeNotifier {
-  late String _uid;
-  late String _email;
+  late String? _uid;
+  late String? _email;
 
-  String get getUid => _uid;
+  String? get getUid => _uid;
 
-  String get getEmail => _email;
+  String? get getEmail => _email;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -21,6 +21,20 @@ class CurrentUser extends ChangeNotifier {
       User _firebaseUser = await _auth.currentUser!;
       _uid = _firebaseUser.uid;
       _email = _firebaseUser.email!;
+      retVal = "success";
+    } catch (e) {
+      print(e);
+    }
+    return retVal;
+  }
+
+    Future<String?> signOut() async {
+    String retVal = "error";
+
+    try {
+      await _auth.signOut();
+      _uid = null;
+      _email = null;
       retVal = "success";
     } catch (e) {
       print(e);
