@@ -37,10 +37,10 @@ class _OurRootState extends State<OurRoot> {
     late Widget retVal;
     switch (_authStatus) {
       case AuthStatus.notLoggedIn:
-        retVal = OurLogin();
+        retVal = const OurLogin();
         break;
       case AuthStatus.loggedIn:
-        retVal = HomeScreen();
+        retVal = const HomeScreen();
         break;
       default:
     }

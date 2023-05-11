@@ -2,6 +2,7 @@
 
 import 'package:book_club/Screens/Login/Localwidgets/login_form.dart';
 import 'package:book_club/Screens/Login/login.dart';
+import 'package:book_club/Screens/Root/root.dart';
 import 'package:book_club/States/current_user.dart';
 import 'package:book_club/Widgets/google_button.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,9 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
       // }
       String? _returnString = await _currentUser.signUpUser(email!, password!);
       if (_returnString == "success") {
-        Navigator.pop(context);
+        Navigator.popUntil(context, (route) => route.isFirst);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const OurRoot()));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

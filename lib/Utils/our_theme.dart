@@ -38,11 +38,11 @@ class OurTheme {
             darkBrown,
           ),
           textStyle: MaterialStateProperty.all(
-            const TextStyle(
+            TextStyle(
               // color: MaterialStateProperty.all(light),
               fontWeight: FontWeight.bold,
               fontSize: 20.0,
-              color: Color(0xffc0c0c5),
+              color: light,
             ),
           ),
           elevation: MaterialStateProperty.all(

@@ -88,7 +88,9 @@ class _OurLoginFormState extends State<OurLoginForm> {
               padding: EdgeInsets.only(left: 10),
               child: Text(
                 "Sign In With Google",
-                // style: TextStyle(color: ),
+                // style: TextStyle(
+                //    color: Color(0xffc0c0c5),
+                // ),
               ),
             ),
           ],

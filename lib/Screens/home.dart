@@ -21,13 +21,13 @@ class HomeScreen extends StatelessWidget {
             CurrentUser _currentUSer =
                 Provider.of<CurrentUser>(context, listen: false);
             String? _returnString = await _currentUSer.signOut();
-            if(_returnString == "success"){
+            if (_returnString == "success") {
               Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => OurRoot(),
-                ),
-                (route) => false);
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const OurRoot(),
+                  ),
+                  (route) => false);
             }
           },
         ),

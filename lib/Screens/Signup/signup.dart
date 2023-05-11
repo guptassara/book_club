@@ -13,9 +13,9 @@ class OurSignup extends StatelessWidget {
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(20),
-              children: const [
-                SizedBox(
-                  height: 140,
+              children: [
+                const SizedBox(
+                  height: 50,
                 ),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.start,
@@ -28,8 +28,12 @@ class OurSignup extends StatelessWidget {
                 //     ),
                 //   ],
                 // ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(110, 0, 110, 0),
+                  child: Image.asset("assets/logo.png"),
+                ),
 
-                OurSignUpForm(),
+                const OurSignUpForm(),
               ],
             ),
           )
