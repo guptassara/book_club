@@ -1,16 +1,16 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'package:book_club/Services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../Models/user.dart';
+
 class CurrentUser extends ChangeNotifier {
-  late String? _uid;
-  late String? _email;
+  late OurUser? _currentUser = OurUser();
 
-  String? get getUid => _uid;
-
-  String? get getEmail => _email;
+  OurUser? get getcurrentUser => _currentUser;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -19,8 +19,8 @@ class CurrentUser extends ChangeNotifier {
 
     try {
       User _firebaseUser = await _auth.currentUser!;
-      _uid = _firebaseUser.uid;
-      _email = _firebaseUser.email!;
+      _currentUser!.uid = _firebaseUser.uid;
+      _currentUser!.email = _firebaseUser.email!;
       retVal = "success";
     } catch (e) {
       print(e);
@@ -28,13 +28,13 @@ class CurrentUser extends ChangeNotifier {
     return retVal;
   }
 
-    Future<String?> signOut() async {
+  Future<String?> signOut() async {
     String retVal = "error";
 
     try {
       await _auth.signOut();
-      _uid = null;
-      _email = null;
+      _currentUser = OurUser();
+
       retVal = "success";
     } catch (e) {
       print(e);
@@ -42,13 +42,20 @@ class CurrentUser extends ChangeNotifier {
     return retVal;
   }
 
-  Future<String?> signUpUser(String email, String password) async {
+  Future<String?> signUpUser(
+      String email, String password, String fullName) async {
     String? retVal = "error";
+    OurUser _user = OurUser();
 
     try {
       UserCredential _userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
-      if (_userCredential.user != null) {
+      _user = _userCredential.user?.uid as OurUser;
+      _user.email = _userCredential.user?.uid;
+      _user.fullName = fullName;
+      String _returnString = await OurDataBase().createUser(_user);
+
+      if (_returnString == "success") {
         retVal = "success";
       }
     } on FirebaseAuthException catch (e) {
@@ -65,8 +72,8 @@ class CurrentUser extends ChangeNotifier {
       UserCredential _userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       if (_userCredential.user != null) {
-        _uid = _userCredential.user!.uid;
-        _email = _userCredential.user!.email!;
+        _currentUser?.uid = _userCredential.user!.uid;
+        _currentUser!.email = _userCredential.user!.email!;
 
         retVal = "success";
       }
@@ -95,8 +102,8 @@ class CurrentUser extends ChangeNotifier {
       UserCredential _userCredential =
           await _auth.signInWithCredential(credential);
       if (_userCredential.user != null) {
-        _uid = _userCredential.user!.uid;
-        _email = _userCredential.user!.email!;
+        _currentUser!.uid = _userCredential.user!.uid;
+        _currentUser!.email = _userCredential.user!.email!;
         retVal = "success";
       }
     } on FirebaseAuthException catch (e) {

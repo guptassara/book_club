@@ -8,6 +8,7 @@ import 'package:book_club/Widgets/google_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../Widgets/our_container.dart';
+import 'package:email_validator/email_validator.dart';
 
 class OurSignUpForm extends StatefulWidget {
   const OurSignUpForm({super.key});
@@ -27,6 +28,7 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
     String? email,
     String? password,
     BuildContext context,
+    String fullName,
   ) async {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
 
@@ -43,7 +45,8 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
       //     break;
       //   default:
       // }
-      String? _returnString = await _currentUser.signUpUser(email!, password!);
+      String? _returnString =
+          await _currentUser.signUpUser(email!, password!, fullName);
       if (_returnString == "success") {
         Navigator.popUntil(context, (route) => route.isFirst);
         Navigator.pushReplacement(
@@ -113,8 +116,23 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
           ElevatedButton(
             onPressed: () {
               if (_passwordController.text == _confirmPasswordController.text) {
-                _signUpUser(
-                    _emailController.text, _passwordController.text, context);
+                _signUpUser(_emailController.text, _passwordController.text,
+                    context, _fullNameController.text);
+                final bool isValid =
+                    EmailValidator.validate(_emailController.text);
+
+                (isValid
+                    ? Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const OurLogin(),
+                        ),
+                      )
+                    : ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("invalid email"),
+                          duration: Duration(seconds: 2),
+                        ),
+                      ));
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
