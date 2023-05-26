@@ -165,7 +165,9 @@ class _OurLoginFormState extends State<OurLoginForm> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context).push(
+              Navigator.popUntil(context, (route) => route.isFirst);
+              Navigator.pushReplacement(
+                context,
                 MaterialPageRoute(
                   builder: (context) => const OurSignup(),
                 ),

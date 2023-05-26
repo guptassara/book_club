@@ -1,4 +1,6 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously
+
+import 'dart:developer';
 
 import 'package:book_club/Screens/Login/Localwidgets/login_form.dart';
 import 'package:book_club/Screens/Login/login.dart';
@@ -45,8 +47,10 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
       //     break;
       //   default:
       // }
+
       String? _returnString =
           await _currentUser.signUpUser(email!, password!, fullName);
+      log(_returnString!);
       if (_returnString == "success") {
         Navigator.popUntil(context, (route) => route.isFirst);
         Navigator.pushReplacement(
@@ -54,13 +58,13 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(_returnString!),
+            content: Text(_returnString),
             duration: const Duration(seconds: 2),
           ),
         );
       }
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
   }
 
@@ -156,7 +160,9 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context).push(
+              Navigator.popUntil(context, (Route) => Route.isFirst);
+              Navigator.pushReplacement(
+                context,
                 MaterialPageRoute(
                   builder: (context) => const OurLogin(),
                 ),

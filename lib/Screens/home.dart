@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          child: Text("Log Out"),
+          child: const Text("Log Out"),
           onPressed: () async {
             CurrentUser _currentUSer =
                 Provider.of<CurrentUser>(context, listen: false);
