@@ -70,114 +70,118 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return OurContainer(
-      child: Column(
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
-            child: Text(
-              "Sign up",
-              style: TextStyle(
-                  color: Theme.of(context).secondaryHeaderColor,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          TextFormField(
-            controller: _fullNameController,
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.person_outline), hintText: "Full Name"),
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          TextFormField(
-            controller: _emailController,
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.alternate_email), hintText: "Email"),
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          TextFormField(
-            controller: _passwordController,
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.lock_outline), hintText: "Password"),
-            obscureText: true,
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          TextFormField(
-            controller: _confirmPasswordController,
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.lock_open_outlined),
-                hintText: "Confirm Password"),
-            obscureText: true,
-          ),
-          const SizedBox(height: 20.0),
-          ElevatedButton(
-            onPressed: () {
-              if (_passwordController.text == _confirmPasswordController.text) {
-                _signUpUser(_emailController.text, _passwordController.text,
-                    context, _fullNameController.text);
-                final bool isValid =
-                    EmailValidator.validate(_emailController.text);
-
-                (isValid
-                    ? Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const OurLogin(),
-                        ),
-                      )
-                    : ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("invalid email"),
-                          duration: Duration(seconds: 2),
-                        ),
-                      ));
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("Passwords do not match"),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 100),
+    return SingleChildScrollView(
+      child: OurContainer(
+        child: Column(
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
               child: Text(
                 "Sign up",
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
+                    color: Theme.of(context).secondaryHeaderColor,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            TextFormField(
+              controller: _fullNameController,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.person_outline),
+                  hintText: "Full Name"),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            TextFormField(
+              controller: _emailController,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.alternate_email), hintText: "Email"),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            TextFormField(
+              controller: _passwordController,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.lock_outline), hintText: "Password"),
+              obscureText: true,
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            TextFormField(
+              controller: _confirmPasswordController,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.lock_open_outlined),
+                  hintText: "Confirm Password"),
+              obscureText: true,
+            ),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                if (_passwordController.text ==
+                    _confirmPasswordController.text) {
+                  _signUpUser(_emailController.text, _passwordController.text,
+                      context, _fullNameController.text);
+                  final bool isValid =
+                      EmailValidator.validate(_emailController.text);
+
+                  (isValid
+                      ? Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const OurLogin(),
+                          ),
+                        )
+                      : ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("invalid email"),
+                            duration: Duration(seconds: 2),
+                          ),
+                        ));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Passwords do not match"),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: Text(
+                  "Sign up",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                  ),
                 ),
               ),
             ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.popUntil(context, (Route) => Route.isFirst);
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const OurLogin(),
-                ),
-              );
-            },
-            child: Text(
-              "Already have an account? Sign in",
-              style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
+            TextButton(
+              onPressed: () {
+                Navigator.popUntil(context, (Route) => Route.isFirst);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const OurLogin(),
+                  ),
+                );
+              },
+              child: Text(
+                "Already have an account? Sign in",
+                style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
+              ),
             ),
-          ),
-          // GoogleButton(
-          //     "Sign up with Google",
-          //     _signUpUser(
-          //         LoginType.google, null, null, context as BuildContext)),
-        ],
+            // GoogleButton(
+            //     "Sign up with Google",
+            //     _signUpUser(
+            //         LoginType.google, null, null, context as BuildContext)),
+          ],
+        ),
       ),
     );
   }

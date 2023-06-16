@@ -8,7 +8,7 @@ class OurDataBase {
 
   Future<String> createUser(OurUser user) async {
     String retVal = "error";
-    
+
     try {
       await _firestore.collection("users").doc(user.uid).set({
         'fullName': user.fullName,

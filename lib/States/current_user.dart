@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:book_club/Services/database.dart';
+import 'package:cloud_firestore_platform_interface/src/timestamp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -52,8 +53,7 @@ class CurrentUser extends ChangeNotifier {
     try {
       UserCredential _userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
-      // _user.accountCreated = _userCredential.user?.uid;
-      _user.email = _userCredential.user?.uid;
+      _user.email = email;
       _user.fullName = fullName;
       String _returnString = await OurDataBase().createUser(_user);
 
