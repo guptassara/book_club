@@ -23,4 +23,21 @@ class OurDataBase {
     }
     return retVal;
   }
+
+   Future<OurUser> getUserInfo(String uid) async {
+    OurUser retVal = OurUser();
+    try {
+      var firestore = FirebaseFirestore.instance;
+      DocumentSnapshot _docSnapshot =
+          await firestore.collection("users").doc(uid).get();
+      retVal.uid = uid;
+      retVal.fullName = _docSnapshot[0].data("fullName") as String?;
+      retVal.email = _docSnapshot[0].data("email") as String?;
+      retVal.accountCreated =
+          _docSnapshot[0].data("accountCreated") as Timestamp?;
+    } catch (e) {
+      log(e.toString());
+    }
+    return retVal;
+  }
 }

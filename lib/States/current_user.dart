@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:book_club/Services/database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_platform_interface/src/timestamp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,10 @@ class CurrentUser extends ChangeNotifier {
 
     try {
       User _firebaseUser = await _auth.currentUser!;
-      _currentUser!.uid = _firebaseUser.uid;
-      _currentUser!.email = _firebaseUser.email!;
-      retVal = "success";
+      _currentUser = await OurDataBase().getUserInfo(_firebaseUser.uid);
+      if (_currentUser != null) {
+        retVal = "success";
+      }
     } catch (e) {
       print(e);
     }
@@ -73,10 +75,8 @@ class CurrentUser extends ChangeNotifier {
     try {
       UserCredential _userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      if (_userCredential.user != null) {
-        _currentUser?.uid = _userCredential.user!.uid;
-        _currentUser!.email = _userCredential.user!.email!;
-
+      _currentUser = await OurDataBase().getUserInfo(_userCredential.user!.uid);
+      if (_currentUser != null) {
         retVal = "success";
       }
     } on FirebaseAuthException catch (e) {
@@ -95,6 +95,8 @@ class CurrentUser extends ChangeNotifier {
       ],
     );
 
+    OurUser _user = OurUser();
+
     try {
       GoogleSignInAccount? _googleUser = await _googleSignIn.signIn();
       GoogleSignInAuthentication _googleAuth =
@@ -103,9 +105,14 @@ class CurrentUser extends ChangeNotifier {
           idToken: _googleAuth.idToken, accessToken: _googleAuth.accessToken);
       UserCredential _userCredential =
           await _auth.signInWithCredential(credential);
-      if (_userCredential.user != null) {
-        _currentUser!.uid = _userCredential.user!.uid;
-        _currentUser!.email = _userCredential.user!.email!;
+      if (_userCredential.additionalUserInfo!.isNewUser) {
+        _user.uid = _userCredential.user!.uid;
+        _user.email = _userCredential.user!.email!;
+        _user.fullName = _userCredential.user!.displayName;
+        OurDataBase().createUser(_user);
+      }
+      _currentUser = await OurDataBase().getUserInfo(_userCredential.user!.uid);
+      if (_currentUser != null) {
         retVal = "success";
       }
     } on FirebaseAuthException catch (e) {
