@@ -62,27 +62,26 @@ class OurTheme {
           ),
         ),
       ),
-      // outlinedButtonTheme: OutlinedButtonThemeData(
-      //   style: ButtonStyle(
-      //     backgroundColor: MaterialStateProperty.all(darkBrown),
-      // textStyle: MaterialStateProperty.all(
-      //   const TextStyle(
-      //     fontSize: 15,
-
-      //   ),
-      //     ),
-      //     side: MaterialStateProperty.all(
-      //       BorderSide(color: darkBrown),
-      //     ),
-      //     shape: MaterialStateProperty.all(
-      //       RoundedRectangleBorder(
-      //         borderRadius: BorderRadius.circular(
-      //           40.0,
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          // backgroundColor: MaterialStateProperty.all(darkBrown),
+          textStyle: MaterialStateProperty.all(
+            const TextStyle(
+              fontSize: 15,
+            ),
+          ),
+          side: MaterialStateProperty.all(
+            BorderSide(color: darkBrown),
+          ),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                40.0,
+              ),
+            ),
+          ),
+        ),
+      ),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         secondary: light,
       ),
