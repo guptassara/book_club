@@ -14,7 +14,9 @@ class OurContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
-            color: Colors.grey,
+            color: Color(
+              0xff151618,
+            ),
             blurRadius: 10,
             spreadRadius: 1,
             offset: Offset(

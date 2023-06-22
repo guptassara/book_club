@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class OurTheme {
-  Color darkBrown = const Color(0xff151618);
-  Color brown = const Color(0xff974928);
-  Color lightBrown = const Color(0xffc8a27c);
-  Color light = const Color(0xffc0c0c5);
-  Color lilac = const Color(0xffa68fb6);
   ThemeData buildTheme() {
+    Color darkBrown = const Color(0xff151618);
+    Color brown = const Color(0xff974928);
+    Color lightBrown = const Color(0xffc8a27c);
+    Color light = const Color(0xffc0c0c5);
+    Color lilac = const Color(0xffa68fb6);
     var minimumSize = 10;
     return ThemeData(
       canvasColor: lightBrown,
@@ -32,7 +32,7 @@ class OurTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(const Size(200, 45)),
+          minimumSize: MaterialStateProperty.all(const Size(200, 43)),
           // minimumSize: MaterialStateProperty<Size?>? minimumSize,
           backgroundColor: MaterialStateProperty.all(
             darkBrown,
@@ -41,8 +41,8 @@ class OurTheme {
             TextStyle(
               // color: MaterialStateProperty.all(light),
               fontWeight: FontWeight.bold,
-              fontSize: 20.0,
-              color: light,
+              fontSize: 18.0,
+              color: lilac,
             ),
           ),
           elevation: MaterialStateProperty.all(
@@ -67,7 +67,7 @@ class OurTheme {
           // backgroundColor: MaterialStateProperty.all(darkBrown),
           textStyle: MaterialStateProperty.all(
             const TextStyle(
-              fontSize: 15,
+              fontSize: 12,
             ),
           ),
           side: MaterialStateProperty.all(
