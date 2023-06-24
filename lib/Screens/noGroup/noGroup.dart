@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class OurNoGroup extends StatelessWidget {
   const OurNoGroup({super.key});
@@ -32,7 +30,7 @@ class OurNoGroup extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(30.0),
             child: Text(
-              "Since you are not in a book club, you can select either to join a club or create a club",
+              "Since, you are not in a book club, you can select either to join a club or create a club",
               style: TextStyle(
                 fontSize: 19,
               ),

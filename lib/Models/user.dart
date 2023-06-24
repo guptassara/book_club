@@ -5,11 +5,13 @@ class OurUser {
   String? fullName;
   String? email;
   Timestamp? accountCreated;
+  String? groupID;
 
   OurUser({
     this.uid,
     this.email,
     this.fullName,
     this.accountCreated,
+    this.groupID,
   });
 }

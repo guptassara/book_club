@@ -24,7 +24,7 @@ class OurDataBase {
     return retVal;
   }
 
-   Future<OurUser> getUserInfo(String uid) async {
+  Future<OurUser> getUserInfo(String uid) async {
     OurUser retVal = OurUser();
     try {
       var firestore = FirebaseFirestore.instance;

@@ -1,13 +1,17 @@
 import 'package:book_club/Screens/Login/login.dart';
 import 'package:book_club/Screens/home.dart';
+import 'package:book_club/Screens/noGroup/noGroup.dart';
+import 'package:book_club/Screens/splashScreen/splashScreen.dart';
 import 'package:book_club/States/current_user.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 
 enum AuthStatus {
+  unknown,
   notLoggedIn,
-  loggedIn,
+  notInGroup,
+  inGroup,
 }
 
 class OurRoot extends StatefulWidget {
@@ -18,7 +22,7 @@ class OurRoot extends StatefulWidget {
 }
 
 class _OurRootState extends State<OurRoot> {
-  AuthStatus _authStatus = AuthStatus.notLoggedIn;
+  AuthStatus _authStatus = AuthStatus.unknown;
 
   @override
   void didChangeDependencies() async {
@@ -26,8 +30,18 @@ class _OurRootState extends State<OurRoot> {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
     String? _returnString = await _currentUser.onStartUp();
     if (_returnString == "success") {
+      if (_currentUser.getcurrentUser?.groupID != null) {
+        setState(() {
+          _authStatus = AuthStatus.inGroup;
+        });
+      } else {
+        setState(() {
+          _authStatus = AuthStatus.notInGroup;
+        });
+      }
+    } else {
       setState(() {
-        _authStatus = AuthStatus.loggedIn;
+        _authStatus = AuthStatus.notLoggedIn;
       });
     }
   }
@@ -36,11 +50,17 @@ class _OurRootState extends State<OurRoot> {
   Widget build(BuildContext context) {
     late Widget retVal;
     switch (_authStatus) {
+      case AuthStatus.unknown:
+        retVal = const OurSplashScreen();
+        break;
       case AuthStatus.notLoggedIn:
         retVal = const OurLogin();
         break;
-      case AuthStatus.loggedIn:
-        retVal = const HomeScreen();
+      case AuthStatus.notInGroup:
+        retVal = OurNoGroup();
+        break;
+      case AuthStatus.inGroup:
+        retVal = HomeScreen();
         break;
       default:
     }
