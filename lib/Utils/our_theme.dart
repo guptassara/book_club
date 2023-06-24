@@ -32,7 +32,7 @@ class OurTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(const Size(200, 43)),
+          minimumSize: MaterialStateProperty.all(const Size(180, 43)),
           // minimumSize: MaterialStateProperty<Size?>? minimumSize,
           backgroundColor: MaterialStateProperty.all(
             darkBrown,
