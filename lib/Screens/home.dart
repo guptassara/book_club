@@ -1,11 +1,22 @@
 import 'package:book_club/Screens/Root/root.dart';
+import 'package:book_club/Screens/noGroup/noGroup.dart';
 import 'package:book_club/States/current_user.dart';
 import 'package:book_club/Widgets/our_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:confirm_dialog/confirm_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  void _goToNoGroup(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => OurNoGroup(),
+      ),
+    );
+  }
 
   void _signOut(BuildContext context) async {
     CurrentUser _currentUSer = Provider.of<CurrentUser>(context, listen: false);
@@ -23,19 +34,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        automaticallyImplyLeading: false,
-      ),
       body: Center(
         child: ListView(
           children: [
+            const SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: OurContainer(
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       "Harry potter and the philosopher's stone",
                       style: TextStyle(fontSize: 20, color: Colors.black),
                     ),
@@ -98,7 +106,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(40.0),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => _goToNoGroup(context),
                 child: const Text("Book Club History"),
               ),
             ),
@@ -133,7 +141,12 @@ class HomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                onPressed: () => _signOut(context),
+                onPressed: () async {
+                  if (await confirm(context)) {
+                    _signOut(context);
+                  }
+                  return print('pressedCancel');
+                },
               ),
             ),
           ],
