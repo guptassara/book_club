@@ -30,13 +30,39 @@ class OurDataBase {
       var firestore = FirebaseFirestore.instance;
       DocumentSnapshot _docSnapshot =
           await firestore.collection("users").doc(uid).get();
+      // Object? data = _docSnapshot.data();
       retVal.uid = uid;
-      retVal.fullName = _docSnapshot[0].data("fullName") as String?;
-      retVal.email = _docSnapshot[0].data("email") as String?;
-      retVal.accountCreated =
-          _docSnapshot[0].data("accountCreated") as Timestamp?;
+      Map<String, dynamic>? data = _docSnapshot.data() as Map<String, dynamic>?;
+      if (data != null) {
+        retVal.fullName = data["fullName"] as String?;
+      } else {
+        retVal.fullName = null;
+      }
+      if (data != null) {
+        retVal.email = data["email"] as String?;
+      } else {
+        retVal.email = null;
+      }
+      if (data != null) {
+        retVal.accountCreated = data["accountCreated"] as Timestamp?;
+      } else {
+        retVal.accountCreated = null;
+      }
+      if (data != null) {
+        retVal.groupID = data["groupID"] as String?;
+      } else {
+        retVal.groupID = null;
+        log("GroupID is null");
+      }
+      // retVal.email = _docSnapshot.get("email");
+      // retVal.accountCreated = _docSnapshot.get("accountCreated");
+      // retVal.groupID = _docSnapshot.get("groupID");
+      // log(retVal.groupID as String);
+      log("w");
+      log(retVal.groupID as String);
     } catch (e) {
       log(e.toString());
+      log("messagee");
     }
     return retVal;
   }

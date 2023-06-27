@@ -57,10 +57,10 @@ class _OurRootState extends State<OurRoot> {
         retVal = const OurLogin();
         break;
       case AuthStatus.notInGroup:
-        retVal = OurNoGroup();
+        retVal = const OurNoGroup();
         break;
       case AuthStatus.inGroup:
-        retVal = HomeScreen();
+        retVal = const HomeScreen();
         break;
       default:
     }
