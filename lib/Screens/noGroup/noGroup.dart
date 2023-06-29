@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 
 class OurNoGroup extends StatelessWidget {
@@ -10,25 +12,25 @@ class OurNoGroup extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           Padding(
-            padding: EdgeInsets.all(
+            padding: const EdgeInsets.all(
               80.0,
             ),
             child: Image.asset("assets/logo.png"),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40.0),
             child: Text(
               "WELCOME TO BOOK CLUB",
               style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(30.0),
+          const Padding(
+            padding: EdgeInsets.all(30.0),
             child: Text(
               "Since, you are not in a book club, you can select either to join a club or create a club",
               style: TextStyle(
@@ -37,7 +39,7 @@ class OurNoGroup extends StatelessWidget {
               textAlign: TextAlign.justify,
             ),
           ),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           Padding(
@@ -55,7 +57,7 @@ class OurNoGroup extends StatelessWidget {
                       ),
                     ),
                     side: MaterialStateProperty.all(
-                      BorderSide(color: Colors.black),
+                      const BorderSide(color: Colors.black),
                     ),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
@@ -68,7 +70,7 @@ class OurNoGroup extends StatelessWidget {
                   onPressed: () {
                     _goToCreate();
                   },
-                  child: Text(
+                  child: const Text(
                     "Create",
                     style: TextStyle(
                       fontSize: 18,
@@ -81,7 +83,7 @@ class OurNoGroup extends StatelessWidget {
                   onPressed: () {
                     _goToJoin();
                   },
-                  child: Text(
+                  child: const Text(
                     "Join",
                   ),
                 ),

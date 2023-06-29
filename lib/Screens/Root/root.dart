@@ -1,3 +1,7 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
+import 'dart:developer';
+
 import 'package:book_club/Screens/Login/login.dart';
 import 'package:book_club/Screens/home.dart';
 import 'package:book_club/Screens/noGroup/noGroup.dart';
@@ -29,8 +33,9 @@ class _OurRootState extends State<OurRoot> {
     super.didChangeDependencies();
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
     String? _returnString = await _currentUser.onStartUp();
+    log(_returnString as String);
     if (_returnString == "success") {
-      if (_currentUser.getcurrentUser?.groupID != null) {
+      if (_currentUser.getcurrentUser?.fullName != null) {
         setState(() {
           _authStatus = AuthStatus.inGroup;
         });

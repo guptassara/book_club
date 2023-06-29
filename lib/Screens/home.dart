@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously
+
 import 'package:book_club/Screens/Root/root.dart';
 import 'package:book_club/Screens/noGroup/noGroup.dart';
 import 'package:book_club/States/current_user.dart';
@@ -13,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => OurNoGroup(),
+        builder: (context) => const OurNoGroup(),
       ),
     );
   }
@@ -43,7 +45,7 @@ class HomeScreen extends StatelessWidget {
               child: OurContainer(
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       "Harry potter and the philosopher's stone",
                       style: TextStyle(fontSize: 20, color: Colors.black),
                     ),
@@ -123,7 +125,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   side: MaterialStateProperty.all(
-                    BorderSide(color: Colors.black),
+                    const BorderSide(color: Colors.black),
                   ),
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(

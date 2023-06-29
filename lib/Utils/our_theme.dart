@@ -7,7 +7,6 @@ class OurTheme {
     Color lightBrown = const Color(0xffc8a27c);
     Color light = const Color(0xffc0c0c5);
     Color lilac = const Color(0xffa68fb6);
-    var minimumSize = 10;
     return ThemeData(
       canvasColor: lightBrown,
       primaryColor: brown,

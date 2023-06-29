@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'dart:developer';
 
 import 'package:book_club/Models/user.dart';
@@ -8,6 +10,7 @@ class OurDataBase {
 
   Future<String> createUser(OurUser user) async {
     String retVal = "error";
+    
 
     try {
       await _firestore.collection("users").doc(user.uid).set({

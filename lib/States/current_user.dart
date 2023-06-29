@@ -22,13 +22,13 @@ class CurrentUser extends ChangeNotifier {
     String retVal = "error";
 
     try {
-      User _firebaseUser = await _auth.currentUser!;
+      User _firebaseUser = _auth.currentUser!;
       _currentUser = await OurDataBase().getUserInfo(_firebaseUser.uid);
       if (_currentUser != null) {
         retVal = "success";
       }
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
     return retVal;
   }
@@ -42,7 +42,7 @@ class CurrentUser extends ChangeNotifier {
 
       retVal = "success";
     } catch (e) {
-      print(e);
+      log(e.toString());
     }
     return retVal;
   }
@@ -55,6 +55,7 @@ class CurrentUser extends ChangeNotifier {
     try {
       UserCredential _userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
+          
       _user.email = email;
       _user.fullName = fullName;
       String _returnString = await OurDataBase().createUser(_user);
