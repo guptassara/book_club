@@ -36,8 +36,6 @@ class OurDataBase {
 
       retVal = OurUser.fromMap(_docSnapshot.data() as Map<String, dynamic>);
 
-      log("w");
-
       return retVal;
     } catch (e) {
       log(e.toString());

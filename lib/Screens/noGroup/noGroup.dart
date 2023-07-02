@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, no_leading_underscores_for_local_identifiers
 
+import 'package:book_club/Screens/createGroup/createGroup.dart';
+import 'package:book_club/Screens/joinGroup/joingroup.dart';
 import 'package:flutter/material.dart';
 
 class OurNoGroup extends StatelessWidget {
@@ -7,8 +9,24 @@ class OurNoGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _goToJoin() {}
-    void _goToCreate() {}
+    void _goToJoin(BuildContext context) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => OurJoinGroup(),
+        ),
+      );
+    }
+
+    void _goToCreate(BuildContext context) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => OurCreateGroup(),
+        ),
+      );
+    }
+
     return Scaffold(
       body: Column(
         children: [
@@ -68,7 +86,7 @@ class OurNoGroup extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    _goToCreate();
+                    _goToCreate(context);
                   },
                   child: const Text(
                     "Create",
@@ -81,7 +99,7 @@ class OurNoGroup extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    _goToJoin();
+                    _goToJoin(context);
                   },
                   child: const Text(
                     "Join",

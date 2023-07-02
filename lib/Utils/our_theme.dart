@@ -4,14 +4,15 @@ class OurTheme {
   ThemeData buildTheme() {
     Color darkBrown = const Color(0xff151618);
     Color brown = const Color(0xff974928);
-    Color lightBrown = const Color(0xffc8a27c);
+
     Color light = const Color(0xffc0c0c5);
+    // Color light = Colors.white70;
     Color lilac = const Color(0xffa68fb6);
     return ThemeData(
-      canvasColor: lightBrown,
-      primaryColor: brown,
+      canvasColor: const Color(0xffEFE1D6),
+      primaryColor: Colors.black,
       secondaryHeaderColor: darkBrown,
-      hintColor: brown,
+      hintColor: Colors.grey,
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),

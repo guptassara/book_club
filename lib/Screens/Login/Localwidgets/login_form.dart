@@ -27,7 +27,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
   final TextEditingController _passwordController = TextEditingController();
 
   void _loginUser(
-    @required LoginType type,
+    LoginType type,
     String? email,
     String? password,
     BuildContext context,
