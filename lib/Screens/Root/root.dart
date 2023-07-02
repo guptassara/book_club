@@ -35,7 +35,7 @@ class _OurRootState extends State<OurRoot> {
     String? _returnString = await _currentUser.onStartUp();
     log(_returnString as String);
     if (_returnString == "success") {
-      if (_currentUser.getcurrentUser?.fullName != null) {
+      if (_currentUser.getcurrentUser?.groupID != null) {
         setState(() {
           _authStatus = AuthStatus.inGroup;
         });

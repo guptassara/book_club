@@ -55,9 +55,10 @@ class CurrentUser extends ChangeNotifier {
     try {
       UserCredential _userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
-          
+
       _user.email = email;
       _user.fullName = fullName;
+      _user.uid = _userCredential.user!.uid;
       String _returnString = await OurDataBase().createUser(_user);
 
       if (_returnString == "success") {
@@ -76,14 +77,16 @@ class CurrentUser extends ChangeNotifier {
     try {
       UserCredential _userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      _currentUser = await OurDataBase().getUserInfo(_userCredential.user!.uid);
+      log(_userCredential.user!.uid.toString());
+      _currentUser =
+          await OurDataBase().getUserInfo(_userCredential.user!.uid.toString());
       if (_currentUser != null) {
         retVal = "success";
       }
     } on FirebaseAuthException catch (e) {
       retVal = e.message;
     }
-
+    log(retVal!);
     return retVal;
   }
 

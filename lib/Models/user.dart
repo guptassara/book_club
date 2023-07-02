@@ -7,11 +7,14 @@ class OurUser {
   Timestamp? accountCreated;
   String? groupID;
 
-  OurUser({
-    this.uid,
-    this.email,
-    this.fullName,
-    this.accountCreated,
-    this.groupID,
-  });
+  OurUser(
+      {this.uid, this.email, this.fullName, this.accountCreated, this.groupID});
+
+  OurUser.fromMap(Map<String, dynamic> map) {
+    uid = map['uid'];
+    fullName = map['fullName'];
+    email = map['email'];
+    accountCreated = map['accountCreated'];
+    groupID = map['groupID'];
+  }
 }

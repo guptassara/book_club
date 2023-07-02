@@ -10,7 +10,6 @@ class OurDataBase {
 
   Future<String> createUser(OurUser user) async {
     String retVal = "error";
-    
 
     try {
       await _firestore.collection("users").doc(user.uid).set({
@@ -27,46 +26,23 @@ class OurDataBase {
     return retVal;
   }
 
-  Future<OurUser> getUserInfo(String uid) async {
-    OurUser retVal = OurUser();
+  Future<OurUser?> getUserInfo(String uid) async {
+    OurUser retVal;
     try {
       var firestore = FirebaseFirestore.instance;
       DocumentSnapshot _docSnapshot =
           await firestore.collection("users").doc(uid).get();
-      // Object? data = _docSnapshot.data();
-      retVal.uid = uid;
-      Map<String, dynamic>? data = _docSnapshot.data() as Map<String, dynamic>?;
-      if (data != null) {
-        retVal.fullName = data["fullName"] as String?;
-      } else {
-        retVal.fullName = null;
-      }
-      if (data != null) {
-        retVal.email = data["email"] as String?;
-      } else {
-        retVal.email = null;
-      }
-      if (data != null) {
-        retVal.accountCreated = data["accountCreated"] as Timestamp?;
-      } else {
-        retVal.accountCreated = null;
-      }
-      if (data != null) {
-        retVal.groupID = data["groupID"] as String?;
-      } else {
-        retVal.groupID = null;
-        log("GroupID is null");
-      }
-      // retVal.email = _docSnapshot.get("email");
-      // retVal.accountCreated = _docSnapshot.get("accountCreated");
-      // retVal.groupID = _docSnapshot.get("groupID");
-      // log(retVal.groupID as String);
+      log(_docSnapshot.data().toString());
+
+      retVal = OurUser.fromMap(_docSnapshot.data() as Map<String, dynamic>);
+
       log("w");
-      log(retVal.groupID as String);
+
+      return retVal;
     } catch (e) {
       log(e.toString());
       log("messagee");
     }
-    return retVal;
+    return null;
   }
 }
