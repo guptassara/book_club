@@ -1,6 +1,11 @@
-// ignore_for_file: prefer_final_fields, prefer_const_constructors
+// ignore_for_file: prefer_final_fields, prefer_const_constructors, use_build_context_synchronously, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, avoid_types_as_parameter_names
 
+import 'package:book_club/Services/database.dart';
+import 'package:book_club/States/current_user.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../Root/root.dart';
 
 class OurJoinGroup extends StatefulWidget {
   const OurJoinGroup({super.key});
@@ -10,7 +15,22 @@ class OurJoinGroup extends StatefulWidget {
 }
 
 class _OurJoinGroupState extends State<OurJoinGroup> {
-  TextEditingController _groupIdController = TextEditingController();
+  Future<void> _joinGroup(BuildContext, String groupID) async {
+    CurrentUser _currentUSer = Provider.of(context, listen: false);
+    String _returnString = await OurDataBase()
+        .joinGroup(groupID, _currentUSer.getcurrentUser!.uid.toString());
+    if (_returnString == "success") {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const OurRoot(),
+          ),
+          (route) => false);
+    }
+  }
+
+  TextEditingController _groupIDController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +48,7 @@ class _OurJoinGroupState extends State<OurJoinGroup> {
             child: Column(
               children: [
                 TextFormField(
-                  controller: _groupIdController,
+                  controller: _groupIDController,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.group),
                     hintText: "Group Id",
@@ -38,7 +58,9 @@ class _OurJoinGroupState extends State<OurJoinGroup> {
                   height: 20.0,
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _joinGroup(context, _groupIDController.text);
+                    },
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 100),
                       child: Text(

@@ -45,7 +45,7 @@ class OurDataBase {
 
   Future<String> createGroup(String groupName, String userUid) async {
     String retVal = "error";
-    List<dynamic> members = List.empty();
+    List<dynamic> members = List.empty(growable: true);
 
     try {
       members.add(userUid);
@@ -53,12 +53,12 @@ class OurDataBase {
         'name': groupName,
         'leader': userUid,
         'members': members,
-        'groupCreated': Timestamp.now()
+        'groupCreated': Timestamp.now(),
       });
       await _firestore
           .collection("users")
           .doc(userUid)
-          .update({'groupId': _docRef.id});
+          .set({'groupID': _docRef.id});
       retVal = "success";
     } catch (e) {
       log(e.toString());
@@ -66,17 +66,21 @@ class OurDataBase {
     return retVal;
   }
 
-  Future<String> joinGroup(String groupId, String userUid) async {
+  Future<String> joinGroup(String groupID, String userUid) async {
     String retVal = "error";
-    List<String> members = List.empty();
+    List<String> members = List.empty(growable: true);
 
     try {
       members.add(userUid);
-      await _firestore.collection("groups").doc(groupId).update({
+      await _firestore.collection("groups").doc(groupID).set({
         'members': FieldValue.arrayUnion(members),
+      });
+      await _firestore.collection("users").doc(userUid).set({
+        'groupID': groupID,
       });
 
       retVal = "success";
+      log(retVal);
     } catch (e) {
       log(e.toString());
     }
