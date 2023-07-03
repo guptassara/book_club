@@ -10,7 +10,7 @@ class OurContainer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
+        color: const Color(0xffF3ABAF),
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(

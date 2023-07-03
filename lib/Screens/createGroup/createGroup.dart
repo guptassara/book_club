@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, prefer_final_fields
+
 import 'package:flutter/material.dart';
 
 class OurCreateGroup extends StatefulWidget {
@@ -14,30 +16,30 @@ class _OurCreateGroupState extends State<OurCreateGroup> {
     return Scaffold(
       body: Column(
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(20.0),
             child: Row(
               children: [BackButton()],
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
                 TextFormField(
                   controller: _groupNameController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.group),
                     hintText: "Group Name",
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 ElevatedButton(
                     onPressed: () {},
-                    child: Padding(
+                    child: const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 100),
                       child: Text(
                         "Create",

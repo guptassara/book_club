@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class OurJoinGroup extends StatefulWidget {
@@ -17,7 +19,7 @@ class _OurJoinGroupState extends State<OurJoinGroup> {
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Row(
-              children: [BackButton()],
+              children: const [BackButton()],
             ),
           ),
           Spacer(),

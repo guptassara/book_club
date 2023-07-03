@@ -1,4 +1,4 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously
+// ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously, avoid_print
 
 import 'package:book_club/Screens/Root/root.dart';
 import 'package:book_club/Screens/noGroup/noGroup.dart';
@@ -49,10 +49,10 @@ class HomeScreen extends StatelessWidget {
                       "Harry potter and the philosopher's stone",
                       style: TextStyle(fontSize: 20, color: Colors.black),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.0),
                       child: Row(
-                        children: const [
+                        children: [
                           Text(
                             "Due In: ",
                             style: TextStyle(fontSize: 15, color: Colors.black),
@@ -75,12 +75,12 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
+            const Padding(
+              padding: EdgeInsets.all(20.0),
               child: OurContainer(
                 child: Column(
                   children: [
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Next book reveal in:",
@@ -88,9 +88,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      padding: EdgeInsets.symmetric(vertical: 20.0),
                       child: Row(
-                        children: const [
+                        children: [
                           Text(
                             "22 days",
                             style: TextStyle(

@@ -1,4 +1,4 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: no_leading_underscores_for_local_identifiers, implementation_imports
 
 import 'dart:developer';
 
@@ -8,7 +8,6 @@ import 'package:book_club/Screens/noGroup/noGroup.dart';
 import 'package:book_club/Screens/splashScreen/splashScreen.dart';
 import 'package:book_club/States/current_user.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 
 enum AuthStatus {

@@ -13,7 +13,7 @@ class OurNoGroup extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => OurJoinGroup(),
+          builder: (context) => const OurJoinGroup(),
         ),
       );
     }
@@ -22,7 +22,7 @@ class OurNoGroup extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => OurCreateGroup(),
+          builder: (context) => const OurCreateGroup(),
         ),
       );
     }

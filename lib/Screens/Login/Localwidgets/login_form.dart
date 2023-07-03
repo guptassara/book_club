@@ -1,4 +1,4 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously
 
 import 'dart:developer';
 
@@ -73,12 +73,12 @@ class _OurLoginFormState extends State<OurLoginForm> {
       onPressed: () {
         _loginUser(LoginType.google, null, null, context);
       },
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+      child: const Padding(
+        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          children: const [
+          children: [
             Image(
               image: AssetImage("assets/googleIcon.png"),
               height: 27,

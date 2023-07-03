@@ -1,12 +1,10 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously
+// ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously, avoid_types_as_parameter_names, non_constant_identifier_names
 
 import 'dart:developer';
 
-import 'package:book_club/Screens/Login/Localwidgets/login_form.dart';
 import 'package:book_club/Screens/Login/login.dart';
 import 'package:book_club/Screens/Root/root.dart';
 import 'package:book_club/States/current_user.dart';
-import 'package:book_club/Widgets/google_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../Widgets/our_container.dart';

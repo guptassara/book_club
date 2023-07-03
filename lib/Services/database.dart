@@ -1,7 +1,6 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'dart:developer';
-
 import 'package:book_club/Models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -42,5 +41,45 @@ class OurDataBase {
       log("messagee");
     }
     return null;
+  }
+
+  Future<String> createGroup(String groupName, String userUid) async {
+    String retVal = "error";
+    List<dynamic> members = List.empty();
+
+    try {
+      members.add(userUid);
+      DocumentReference _docRef = await _firestore.collection("groups").add({
+        'name': groupName,
+        'leader': userUid,
+        'members': members,
+        'groupCreated': Timestamp.now()
+      });
+      await _firestore
+          .collection("users")
+          .doc(userUid)
+          .update({'groupId': _docRef.id});
+      retVal = "success";
+    } catch (e) {
+      log(e.toString());
+    }
+    return retVal;
+  }
+
+  Future<String> joinGroup(String groupId, String userUid) async {
+    String retVal = "error";
+    List<String> members = List.empty();
+
+    try {
+      members.add(userUid);
+      await _firestore.collection("groups").doc(groupId).update({
+        'members': FieldValue.arrayUnion(members),
+      });
+
+      retVal = "success";
+    } catch (e) {
+      log(e.toString());
+    }
+    return retVal;
   }
 }
