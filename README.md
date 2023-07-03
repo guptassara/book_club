@@ -58,7 +58,7 @@ This is a Flutter-based mobile application for a book club. The app provides a p
 
 2. Clone this repository to your local machine:
    ```
-   git clone https://github.com/your-username/book-club-app.git
+   git clone https://github.com/ssara02/book_club.git
    ```
 
 3. Navigate to the project directory:
