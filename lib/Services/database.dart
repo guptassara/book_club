@@ -55,11 +55,14 @@ class OurDataBase {
         'members': members,
         'groupCreated': Timestamp.now(),
       });
+      log(members.toString());
+      log(_docRef.id);
       await _firestore
           .collection("users")
           .doc(userUid)
           .set({'groupID': _docRef.id});
       retVal = "success";
+      log(userUid);
     } catch (e) {
       log(e.toString());
     }

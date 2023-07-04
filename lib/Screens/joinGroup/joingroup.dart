@@ -15,7 +15,7 @@ class OurJoinGroup extends StatefulWidget {
 }
 
 class _OurJoinGroupState extends State<OurJoinGroup> {
-  Future<void> _joinGroup(BuildContext, String groupID) async {
+  Future<void> _joinGroup(BuildContext context, String groupID) async {
     CurrentUser _currentUSer = Provider.of(context, listen: false);
     String _returnString = await OurDataBase()
         .joinGroup(groupID, _currentUSer.getcurrentUser!.uid.toString());
