@@ -93,7 +93,11 @@ This project is licensed under the [MIT License](LICENSE).
 If you have any questions or need further assistance, feel free to contact the project maintainer:
 
 Your Name
+<<<<<<< HEAD
 Email: 0212ssara@gmail.com
+=======
+Email: gupta.ssara@gmail.com
+>>>>>>> e1118f23d8926a71f214a084ab5a41f4cef4f299
 
 ---
 
