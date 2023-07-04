@@ -147,14 +147,14 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
                   );
                 }
               },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 100),
                 child: Text(
                   "Sign up",
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
+                    // fontSize: 20.0,
                   ),
                 ),
               ),

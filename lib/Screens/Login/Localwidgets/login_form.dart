@@ -103,13 +103,12 @@ class _OurLoginFormState extends State<OurLoginForm> {
     return OurContainer(
       child: Column(
         children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 8.0),
             child: Text(
               "Sign In",
               style: TextStyle(
-                  color: Theme.of(context).secondaryHeaderColor,
+                  color: Colors.black,
                   fontSize: 25,
                   fontWeight: FontWeight.bold),
             ),
@@ -150,14 +149,14 @@ class _OurLoginFormState extends State<OurLoginForm> {
               _loginUser(LoginType.email, _emailController.text,
                   _passwordController.text, context);
             },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 100),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 100),
               child: Text(
                 "Sign In",
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
+                  // fontSize: 20.0,
                 ),
               ),
             ),

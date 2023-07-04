@@ -2,12 +2,10 @@
 
 import 'dart:developer';
 
-import 'package:book_club/Models/group.dart';
 import 'package:book_club/Screens/Root/root.dart';
 import 'package:book_club/Services/database.dart';
 import 'package:book_club/States/current_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,18 +20,22 @@ class _OurCreateGroupState extends State<OurCreateGroup> {
   Future<void> _createGroup(BuildContext context, String groupName) async {
     CurrentUser _currentUSer = Provider.of(context, listen: false);
     User? user = FirebaseAuth.instance.currentUser;
-    String _returnString =
-        await OurDataBase().createGroup(groupName, user!.uid.toString());
-    log(_returnString);
-    log(_currentUSer.getcurrentUser!.uid.toString());
-    log(_currentUSer.getcurrentUser.toString());
-    if (_returnString == "success") {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const OurRoot(),
-          ),
-          (route) => false);
+    if (user != null) {
+      String _returnString =
+          await OurDataBase().createGroup(groupName, user.uid.toString());
+      log(_returnString);
+      log(_currentUSer.getcurrentUser!.uid.toString());
+      log(_currentUSer.getcurrentUser.toString());
+      if (_returnString == "success") {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const OurRoot(),
+            ),
+            (route) => false);
+      }
+    } else {
+      log("No Group created");
     }
   }
 
@@ -43,8 +45,11 @@ class _OurCreateGroupState extends State<OurCreateGroup> {
     return Scaffold(
       body: Column(
         children: [
+          const SizedBox(
+            height: 20.0,
+          ),
           const Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(10.0),
             child: Row(
               children: [BackButton()],
             ),

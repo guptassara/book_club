@@ -12,7 +12,7 @@ class OurTheme {
       canvasColor: const Color(0xffEFE1D6),
       primaryColor: Colors.black,
       secondaryHeaderColor: darkBrown,
-      hintColor: Colors.grey,
+      hintColor: const Color(0xffFAF7F2),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
