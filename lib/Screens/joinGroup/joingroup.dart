@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_final_fields, prefer_const_constructors, use_build_context_synchronously, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, avoid_types_as_parameter_names
 
+import 'dart:developer';
+
 import 'package:book_club/Services/database.dart';
 import 'package:book_club/States/current_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,15 +20,23 @@ class OurJoinGroup extends StatefulWidget {
 class _OurJoinGroupState extends State<OurJoinGroup> {
   Future<void> _joinGroup(BuildContext context, String groupID) async {
     CurrentUser _currentUSer = Provider.of(context, listen: false);
-    String _returnString = await OurDataBase()
-        .joinGroup(groupID, _currentUSer.getcurrentUser!.uid.toString());
-    if (_returnString == "success") {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const OurRoot(),
-          ),
-          (route) => false);
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String _returnString =
+          await OurDataBase().joinGroup(groupID, user.uid.toString());
+      log(_returnString);
+      log(_currentUSer.getcurrentUser!.uid.toString());
+      log(_currentUSer.getcurrentUser.toString());
+      if (_returnString == "success") {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const OurRoot(),
+            ),
+            (route) => false);
+      }
+    } else {
+      log("No Group created");
     }
   }
 

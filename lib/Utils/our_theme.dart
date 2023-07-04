@@ -19,10 +19,8 @@ class OurTheme {
           borderSide: BorderSide(color: light),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
-          borderSide: BorderSide(
-            color: lilac,
-          ),
+          borderRadius: BorderRadius.circular(10),
+          // borderSide: BorderSide(color: light),
         ),
         prefixIconColor: brown,
       ),

@@ -3,12 +3,13 @@
 import 'dart:developer';
 
 import 'package:book_club/Screens/Signup/signup.dart';
-import 'package:book_club/Screens/home.dart';
 import 'package:book_club/States/current_user.dart';
 import 'package:book_club/Widgets/our_container.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../Root/root.dart';
 
 enum LoginType {
   email,
@@ -52,7 +53,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
       if (_returnString == "success") {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
+            builder: (context) => const OurRoot(),
           ),
         );
       } else {
