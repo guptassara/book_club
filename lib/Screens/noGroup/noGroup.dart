@@ -61,9 +61,9 @@ class OurNoGroup extends StatelessWidget {
             flex: 1,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            padding: const EdgeInsets.all(20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 OutlinedButton(
                   style: ButtonStyle(
@@ -108,6 +108,9 @@ class OurNoGroup extends StatelessWidget {
               ],
             ),
           ),
+          // Spacer(
+          //   flex: 1,
+          // )
         ],
       ),
     );
