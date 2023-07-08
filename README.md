@@ -58,7 +58,7 @@ This is a Flutter-based mobile application for a book club. The app provides a p
 
 2. Clone this repository to your local machine:
    ```
-   git clone https://github.com/ssara02/book_club.git
+   git clone https://github.com/guptassara/book_club.git
    ```
 
 3. Navigate to the project directory:
@@ -92,12 +92,10 @@ This project is licensed under the [MIT License](LICENSE).
 
 If you have any questions or need further assistance, feel free to contact the project maintainer:
 
-Your Name
-<<<<<<< HEAD
-Email: 0212ssara@gmail.com
+Ssara Gupta
 =======
 Email: gupta.ssara@gmail.com
->>>>>>> e1118f23d8926a71f214a084ab5a41f4cef4f299
+
 
 ---
 
