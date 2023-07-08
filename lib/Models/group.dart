@@ -6,6 +6,7 @@ class OurUser {
   String? leader;
   Timestamp? groupCreated;
   List<String>? members;
+  String? bookID;
 
   OurUser({this.id, this.leader, this.name, this.groupCreated, this.members});
 

@@ -19,6 +19,7 @@ class OurJoinGroup extends StatefulWidget {
 
 class _OurJoinGroupState extends State<OurJoinGroup> {
   Future<void> _joinGroup(BuildContext context, String groupID) async {
+    
     CurrentUser _currentUSer = Provider.of(context, listen: false);
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {

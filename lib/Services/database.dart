@@ -3,6 +3,7 @@
 import 'dart:developer';
 import 'package:book_club/Models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class OurDataBase {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -57,10 +58,13 @@ class OurDataBase {
       });
       log(members.toString());
       log(_docRef.id);
-      await _firestore
-          .collection("users")
-          .doc(userUid)
-          .set({'groupID': _docRef.id});
+      // User? _localUser = FirebaseAuth.instance.currentUser;
+
+      await _firestore.collection("users").doc(userUid).set(
+          {'groupID': _docRef.id},
+          SetOptions(
+            merge: true,
+          ));
       retVal = "success";
       log(userUid);
     } catch (e) {
@@ -75,12 +79,20 @@ class OurDataBase {
 
     try {
       members.add(userUid);
-      await _firestore.collection("groups").doc(groupID).set({
-        'members': FieldValue.arrayUnion(members),
-      });
-      await _firestore.collection("users").doc(userUid).set({
-        'groupID': groupID,
-      });
+      await _firestore.collection("groups").doc(groupID).set(
+          {
+            'members': FieldValue.arrayUnion(members),
+          },
+          SetOptions(
+            merge: true,
+          ));
+      await _firestore.collection("users").doc(userUid).set(
+          {
+            'groupID': groupID,
+          },
+          SetOptions(
+            merge: true,
+          ));
 
       retVal = "success";
       log(retVal);
