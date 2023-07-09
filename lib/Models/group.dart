@@ -1,20 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class OurUser {
+class OurGroup {
   String? id;
   String? name;
   String? leader;
   Timestamp? groupCreated;
   List<String>? members;
-  String? bookID;
+  String? currentBookID;
+  Timestamp? currentBookDue;
 
-  OurUser({this.id, this.leader, this.name, this.groupCreated, this.members});
+  OurGroup(
+      {this.id,
+      this.leader,
+      this.name,
+      this.groupCreated,
+      this.members,
+      this.currentBookDue,
+      this.currentBookID});
 
-  OurUser.fromMap(Map<String, dynamic> map) {
+  OurGroup.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     name = map['name'];
     leader = map['leader'];
     groupCreated = map['groupCreated'];
     members = map['members'];
+    currentBookID = map["currentBookID"];
+    currentBookDue = map["currentBookDue"];
   }
 }

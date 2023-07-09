@@ -75,8 +75,9 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
+            // SizedBox(height: 40.0),
             const Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
               child: OurContainer(
                 child: Column(
                   children: [

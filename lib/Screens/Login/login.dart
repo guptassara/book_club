@@ -15,7 +15,7 @@ class OurLogin extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(50.0),
+                  padding: const EdgeInsets.all(80.0),
                   child: Image.asset(
                     "assets/logo.png",
                     height: 150,

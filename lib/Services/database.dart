@@ -1,9 +1,9 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'dart:developer';
+import 'package:book_club/Models/group.dart';
 import 'package:book_club/Models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class OurDataBase {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -100,5 +100,23 @@ class OurDataBase {
       log(e.toString());
     }
     return retVal;
+  }
+
+  Future<OurGroup?> getGroupInfo(String groupID) async {
+    OurGroup retVal;
+    try {
+      var firestore = FirebaseFirestore.instance;
+      DocumentSnapshot _docSnapshot =
+          await firestore.collection("groups").doc(groupID).get();
+      log(_docSnapshot.data().toString());
+
+      retVal = OurGroup.fromMap(_docSnapshot.data() as Map<String, dynamic>);
+
+      return retVal;
+    } catch (e) {
+      log(e.toString());
+      log("messagee");
+    }
+    return null;
   }
 }

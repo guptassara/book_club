@@ -94,7 +94,7 @@ If you have any questions or need further assistance, feel free to contact the p
 
 Ssara Gupta
 =======
-Email: 0212ssara@gmail.com
+Email: gupta.ssara@gmail.com
 
 
 ---
