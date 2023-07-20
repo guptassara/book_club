@@ -21,9 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // implement initState
     super.initState();
-    CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
-    CurrentGroup _currentGroup =
-        Provider.of<CurrentGroup>(context, listen: false);
+    CurrentUser _currentUser =
+        CurrentUser(); //Provider.of<CurrentUser>(context, listen: false);
+    CurrentGroup _currentGroup = CurrentGroup();
+    // Provider.of<CurrentGroup>(context, listen: false);
     _currentGroup.updateStateFromDatabase(_currentUser.getcurrentUser?.groupID);
   }
 
