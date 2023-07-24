@@ -19,7 +19,6 @@ class OurJoinGroup extends StatefulWidget {
 
 class _OurJoinGroupState extends State<OurJoinGroup> {
   Future<void> _joinGroup(BuildContext context, String groupID) async {
-    
     CurrentUser _currentUSer = Provider.of(context, listen: false);
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -49,7 +48,7 @@ class _OurJoinGroupState extends State<OurJoinGroup> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.only(top: 40.0),
             child: Row(
               children: const [BackButton()],
             ),

@@ -61,36 +61,40 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: OurContainer(
-                  child: Column(
-                    children: [
-                      const Text(
-                        "Harry potter and the philosopher's stone",
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Due In: ",
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.black),
+                  child: Consumer<CurrentGroup>(
+                    builder: (BuildContext context, value, Widget? child) {
+                      return Column(
+                        children: [
+                          Text(
+                            value.getCurrentBook!.name!,
+                            style: const TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Due In: ",
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.black),
+                                ),
+                                Text(
+                                  "8 days",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
-                            Text(
-                              "8 days",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Finished Book"),
-                      )
-                    ],
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text("Finished Book"),
+                          )
+                        ],
+                      );
+                    },
                   ),
                 ),
               ),

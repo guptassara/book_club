@@ -16,14 +16,21 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     return ChangeNotifierProvider(
       create: (context) => CurrentUser(),
-      child: MaterialApp(
-        theme: OurTheme().buildTheme(),
-        debugShowCheckedModeBanner: false,
-        home: const OurRoot(),
-      ),
+      builder: (context, child) {
+        return MaterialApp(
+          theme: OurTheme().buildTheme(),
+          debugShowCheckedModeBanner: false,
+          home: const OurRoot(),
+        );
+      },
+      // child: MaterialApp(
+      //   theme: OurTheme().buildTheme(),
+      //   debugShowCheckedModeBanner: false,
+      //   home: const OurRoot(),
+      // ),
     );
   }
 }

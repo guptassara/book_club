@@ -109,13 +109,15 @@ class OurDataBase {
       var firestore = FirebaseFirestore.instance;
       DocumentSnapshot _docSnapshot =
           await firestore.collection("groups").doc(groupID).get();
+      log("okay");
       log(_docSnapshot.data().toString());
 
       retVal = OurGroup.fromMap(_docSnapshot.data() as Map<String, dynamic>);
-
+      
       return retVal;
     } catch (e) {
       log(e.toString());
+      log("_messageee");
     }
     return null;
   }
@@ -128,8 +130,10 @@ class OurDataBase {
           .collection("groups")
           .doc(groupID)
           .collection("books")
-          .doc(bookID).get();
+          .doc(bookID)
+          .get();
       log(_docSnapshot.data().toString());
+      log("getCurrentBook");
 
       retVal = OurBook.fromMap(_docSnapshot.data() as Map<String, dynamic>);
 

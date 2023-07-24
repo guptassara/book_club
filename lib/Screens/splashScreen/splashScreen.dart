@@ -8,7 +8,17 @@ class OurSplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text("loading...")),
+      body: Center(
+        child: Column(
+          children: [
+            Image(
+              image: AssetImage("assets/logo.png"),
+              height: 20,
+            ),
+            Text("loading...")
+          ],
+        ),
+      ),
     );
   }
 }

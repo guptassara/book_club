@@ -8,6 +8,7 @@ import 'package:book_club/Services/database.dart';
 import 'package:flutter/material.dart';
 
 class CurrentGroup extends ChangeNotifier {
+  
   late OurGroup? _currentGroup = OurGroup();
   late OurBook? _currentBook = OurBook();
 

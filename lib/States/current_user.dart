@@ -114,6 +114,7 @@ class CurrentUser extends ChangeNotifier {
         OurDataBase().createUser(_user);
       }
       _currentUser = await OurDataBase().getUserInfo(_userCredential.user!.uid);
+
       if (_currentUser != null) {
         retVal = "success";
       }
