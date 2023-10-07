@@ -50,6 +50,12 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+//   void _showBookName(BuildContext context) async {
+// Navigator.push(context, MaterialPageRoute(builder: (context){
+//   Consumer<>(),
+// }));
+//   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,40 +67,36 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: OurContainer(
-                  child: Consumer<CurrentGroup>(
-                    builder: (BuildContext context, value, Widget? child) {
-                      return Column(
-                        children: [
-                          Text(
-                            value.getCurrentBook!.name!,
-                            style: const TextStyle(fontSize: 20, color: Colors.black),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Due In: ",
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.black),
-                                ),
-                                Text(
-                                  "8 days",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Harry Potter and the philosopher\'s stone',
+                        style: TextStyle(fontSize: 20, color: Colors.black),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Due In: ",
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
                             ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: const Text("Finished Book"),
-                          )
-                        ],
-                      );
-                    },
+                            Text(
+                              "8 days",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text("Finished Book"),
+                      )
+                    ],
                   ),
                 ),
               ),

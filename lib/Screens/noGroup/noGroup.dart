@@ -37,7 +37,10 @@ class OurNoGroup extends StatelessWidget {
             padding: const EdgeInsets.all(
               80.0,
             ),
-            child: Image.asset("assets/logo.png"),
+            child: Image.asset(
+              "assets/logo.png",
+              height: 150,
+            ),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 40.0),

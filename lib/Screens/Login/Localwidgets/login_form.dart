@@ -8,6 +8,7 @@ import 'package:book_club/Widgets/our_container.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:turn_page_transition/turn_page_transition.dart';
 
 import '../../Root/root.dart';
 
@@ -167,7 +168,10 @@ class _OurLoginFormState extends State<OurLoginForm> {
               Navigator.popUntil(context, (route) => route.isFirst);
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
+                TurnPageRoute(
+                  animationTransitionPoint: null,
+                  transitionDuration: const Duration(milliseconds: 300),
+                  reverseTransitionDuration: const Duration(milliseconds: 300),
                   builder: (context) => const OurSignup(),
                 ),
               );

@@ -7,6 +7,7 @@ import 'package:book_club/Screens/Root/root.dart';
 import 'package:book_club/States/current_user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:turn_page_transition/turn_page_transition.dart';
 import '../../../Widgets/our_container.dart';
 import 'package:email_validator/email_validator.dart';
 
@@ -128,7 +129,11 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
 
                   (isValid
                       ? Navigator.of(context).push(
-                          MaterialPageRoute(
+                          TurnPageRoute(
+                            transitionDuration:
+                                const Duration(milliseconds: 300),
+                            reverseTransitionDuration:
+                                const Duration(milliseconds: 300),
                             builder: (context) => const OurLogin(),
                           ),
                         )
@@ -164,7 +169,11 @@ class _OurSignUpFormState extends State<OurSignUpForm> {
                 Navigator.popUntil(context, (Route) => Route.isFirst);
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
+                  TurnPageRoute(
+                    animationTransitionPoint: null,
+                          transitionDuration: const Duration(milliseconds: 300),
+                          reverseTransitionDuration:
+                              const Duration(milliseconds: 300),
                     builder: (context) => const OurLogin(),
                   ),
                 );
